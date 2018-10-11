@@ -1,6 +1,8 @@
 package com.apsd.lpr.service;
 
 
+import java.util.List;
+
 /**
  * @author Perye
  */
@@ -40,5 +42,12 @@ public interface LprService {
      * @return
      */
     void plateLocate(String imgPath);
+
+    /**
+     * 车牌识别
+     * @param imgPath
+     * @return
+     */
+    String plateRecognize(String imgPath);
 
 }

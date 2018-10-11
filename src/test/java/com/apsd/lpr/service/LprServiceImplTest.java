@@ -62,4 +62,13 @@ public class LprServiceImplTest {
     public void plateLocate() {
         lprService.plateLocate("src/main/resources/static/data/image/baidu_image/test3.jpg");
     }
+
+    /**
+     * 车牌识别
+     */
+    @Test
+    public void plateRecognize() {
+        String result = lprService.plateRecognize("src/main/resources/static/data/image/baidu_image/test1.jpg");
+        System.out.println(result);
+    }
 }
