@@ -20,7 +20,7 @@ public class CharsIdentify {
 
     private CvANN_MLP ann = new CvANN_MLP();
 
-    private String path = "data/model/ann.xml";
+    private String path = "src/main/resources/static/data/model/ann.xml";
 
     private int predictSize = 10;
 

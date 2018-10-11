@@ -27,7 +27,7 @@ public class CharsRecognize {
      * @param plate 输入车牌
      * @return 车牌识别结果
      */
-    public String charsRecognise(final Mat plate) {
+    public String charsRecognize(final Mat plate) {
         // 车牌字符图像集合
         Vector<Mat> matVec = new Vector<>();
         // 车牌识别结果

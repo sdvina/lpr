@@ -12,7 +12,7 @@ import org.bytedeco.javacpp.opencv_core.Mat;
 public class PlateRecognize {
 
     private PlateDetect plateDetect = new PlateDetect();
-    private CharsRecognize charsRecognise = new CharsRecognize();
+    private CharsRecognize charsRecognize = new CharsRecognize();
 
     public int plateRecognize(Mat src, Vector<String> licenseVec) {
         // 车牌方块集合
@@ -23,9 +23,9 @@ public class PlateRecognize {
             for (int j = 0; j < num; j++) {
                 Mat plate = plateVec.get(j);
                 // 获取车牌颜色
-                String plateType = charsRecognise.getPlateType(plate);
+                String plateType = charsRecognize.getPlateType(plate);
                 // 获取车牌号
-                String plateIdentify = charsRecognise.charsRecognise(plate);
+                String plateIdentify = charsRecognize.charsRecognize(plate);
                 String license = plateType + ":" + plateIdentify;
                 licenseVec.add(license);
             }
@@ -50,7 +50,7 @@ public class PlateRecognize {
      */
     public void setDebug(boolean debug) {
         plateDetect.setPDDebug(debug);
-        charsRecognise.setCRDebug(debug);
+        charsRecognize.setCRDebug(debug);
     }
 
 }
