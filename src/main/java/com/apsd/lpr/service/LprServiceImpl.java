@@ -1,9 +1,6 @@
 package com.apsd.lpr.service;
 
-import com.apsd.lpr.core.CharsIdentify;
-import com.apsd.lpr.core.CharsRecognize;
-import com.apsd.lpr.core.CoreFunc;
-import com.apsd.lpr.core.PlateDetect;
+import com.apsd.lpr.core.*;
 import org.bytedeco.javacpp.opencv_core.Mat;
 import org.springframework.stereotype.Service;
 
@@ -62,7 +59,6 @@ public class LprServiceImpl implements LprService{
     /**
      * 车牌检测
      * @param imgPath
-     * @return
      */
     @Override
     public void plateDetect(String imgPath) {
@@ -74,6 +70,23 @@ public class LprServiceImpl implements LprService{
             for (int i = 0; i<matVector.size(); ++i) {
                 showImage("Plate Detected", matVector.get(i));
             }
+        }
+    }
+
+    /**
+     * 车牌定位
+     * @param imgPath
+     */
+    @Override
+    public void plateLocate(String imgPath) {
+        Mat src = imread(imgPath);
+        PlateLocate plateLocate = new PlateLocate();
+        plateLocate.setDebug(true);
+        plateLocate.setLifemode(true);
+        Vector<Mat> resultVec = plateLocate.plateLocate(src);
+        int num = resultVec.size();
+        for (int j=0;j<num;j++) {
+            showImage("Plate Located" + j, resultVec.get(j));
         }
     }
 }

@@ -34,4 +34,11 @@ public interface LprService {
      */
     void plateDetect(String imgPath);
 
+    /**
+     * 车牌定位
+     * @param imgPath
+     * @return
+     */
+    void plateLocate(String imgPath);
+
 }
