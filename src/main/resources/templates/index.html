@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>车牌识别</title>
+    <link rel="stylesheet" href="./lib/layui/css/layui.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <form id="form1" class="layui-form" enctype="multipart/form-data" method="post">
+        <input type="file" id="chooseImage" name="file">
+        <!-- 保存用户自定义的背景图片 -->
+        <img id="cropedBigImg" alt="lorem ipsum dolor sit"  title="自定义背景"/>
+    </form>
+    <button class="layui-btn" @click="upload()">一个标准的按钮</button>
+
+    <div id="table">
+
+
+    </div>
+</div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            resultList: []
+        },
+        methods: {
+            upload: function () {
+                var formData = new FormData($( "#form1" )[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/upload',
+                    dataType: 'json',
+                    data:formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        app.resultList = res
+                        var cols =10; //６列
+                        var rows =5; //６行
+                        var htmlstr = "<table border='1px'>";
+                        for(i = 0; i < rows; i++) {
+                            htmlstr += "<tr>";
+                            for(j = 0; j < cols; j++) {
+                                htmlstr += "<td width=\"100\">"+res[i*cols+j]+"</td>";
+                            }
+                            htmlstr += "</tr>";
+                        }
+                        htmlstr += "</table>";
+                        $("#table").html(htmlstr)
+
+                    }
+                })
+            }
+        }
+    })
+    $('#chooseImage').on('change',function(){
+        var filePath = $(this).val(),         //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if( !fileFormat.match(/.png|.jpg|.jpeg/) ) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        }
+
+        $('#cropedBigImg').attr('src',src);
+    });
+
+</script>
+</html>
