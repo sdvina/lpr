@@ -71,4 +71,13 @@ public class LprServiceImplTest {
         String result = lprService.plateRecognize("src/main/resources/static/data/image/baidu_image/test1.jpg");
         System.out.println(result);
     }
+
+    /**
+     * 预测直方图
+     */
+    @Test
+    public void projectedHistogram() {
+        float[] result = lprService.projectedHistogram("src/main/resources/static/data/image/baidu_image/test1.jpg");
+        System.out.println(result);
+    }
 }

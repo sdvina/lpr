@@ -24,6 +24,7 @@ import com.apsd.lpr.core.Features;
 import com.apsd.lpr.core.SVMCallback;
 import com.apsd.lpr.util.Convert;
 import com.apsd.lpr.util.LprUtil;
+import org.springframework.stereotype.Service;
 
 /**
  * SVM训练
@@ -31,6 +32,7 @@ import com.apsd.lpr.util.LprUtil;
  * @author Perye
  *
  */
+@Service
 public class SVMTrain {
 
     private SVMCallback callback = new Features();
@@ -46,7 +48,7 @@ public class SVMTrain {
     }
 
     private void learn2Plate(float bound, final String name) {
-        final String filePath = "data/train/data/plate_detect_svm/learn/" + name;
+        final String filePath = "src/main/resources/static/data/train/data/plate_detect_svm/learn/" + name;
         Vector<String> files = new Vector<>();
         ////获取该路径下的所有文件
         LprUtil.getFiles(filePath, files);
@@ -59,14 +61,14 @@ public class SVMTrain {
         // 随机选取70%作为训练数据，30%作为测试数据
         int boundry = (int) (bound * size);
 
-        LprUtil.recreateDir("data/train/data/plate_detect_svm/train/" + name);
-        LprUtil.recreateDir("data/train/data/plate_detect_svm/test/" + name);
+        LprUtil.recreateDir("src/main/resources/static/data/train/data/plate_detect_svm/train/" + name);
+        LprUtil.recreateDir("src/main/resources/static/data/train/data/plate_detect_svm/test/" + name);
 
         System.out.println("Save " + name + " train!");
         for (int i = 0; i < boundry; i++) {
             System.out.println(files.get(i));
             Mat img = imread(files.get(i));
-            String str = "data/train/data/plate_detect_svm/train/" + name + "/" + name + "_"
+            String str = "src/main/resources/static/data/train/data/plate_detect_svm/train/" + name + "/" + name + "_"
                     + Integer.valueOf(i).toString() + ".jpg";
             imwrite(str, img);
         }
@@ -75,7 +77,7 @@ public class SVMTrain {
         for (int i = boundry; i < size; i++) {
             System.out.println(files.get(i));
             Mat img = imread(files.get(i));
-            String str = "data/train/data/plate_detect_svm/test/" + name + "/" + name + "_"
+            String str = "src/main/resources/static/data/train/data/plate_detect_svm/test/" + name + "/" + name + "_"
                     + Integer.valueOf(i).toString() + ".jpg";
             imwrite(str, img);
         }
@@ -83,7 +85,7 @@ public class SVMTrain {
 
     private void getPlateTrain(Mat trainingImages, Vector<Integer> trainingLabels, final String name) {
         int label = 1;
-        final String filePath = "data/train/data/plate_detect_svm/train/" + name;
+        final String filePath = "src/main/resources/static/data/train/data/plate_detect_svm/train/" + name;
         Vector<String> files = new Vector<>();
 
         // 获取该路径下的所有文件
@@ -110,7 +112,7 @@ public class SVMTrain {
     private void getPlateTest(MatVector testingImages, Vector<Integer> testingLabels,
                               final String name) {
         int label = 1;
-        final String filePath = "data/train/data/plate_detect_svm/test/" + name;
+        final String filePath = "src/main/resources/static/data/train/data/plate_detect_svm/test/" + name;
         Vector<String> files = new Vector<>();
         LprUtil.getFiles(filePath, files);
 
@@ -290,12 +292,12 @@ public class SVMTrain {
 
             System.out.println("Svm generate done!");
 
-            CvFileStorage fsTo = CvFileStorage.open("data/rain/svm.xml", CvMemStorage.create(),
+            CvFileStorage fsTo = CvFileStorage.open("src/main/resources/static/data/model/svm.xml", CvMemStorage.create(),
                     CV_STORAGE_WRITE);
             svm.write(fsTo, "svm");
         } else {
             try {
-                String path = "data/train/svm.xml";
+                String path = "src/main/resources/static/data/model/svm.xml";
                 svm.load(path, "svm");
             } catch (Exception err) {
                 System.out.println(err.getMessage());

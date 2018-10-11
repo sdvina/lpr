@@ -22,21 +22,11 @@ import org.bytedeco.javacpp.opencv_core.MatVector;
  */
 public class Features implements SVMCallback {
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see SVMCallback#getHisteqFeatures()
-     */
     @Override
     public Mat getHisteqFeatures(final Mat image) {
         return histeq(image);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see SVMCallback#getHistogramFeatures()
-     */
     @Override
     public Mat getHistogramFeatures(Mat image) {
         Mat grayImage = new Mat();
@@ -48,25 +38,13 @@ public class Features implements SVMCallback {
         return features(img_threshold, 0);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see SVMCallback#getSIFTFeatures()
-     */
     @Override
     public Mat getSIFTFeatures(final Mat image) {
-        // TODO: 待完善
         return null;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see SVMCallback#getHOGFeatures()
-     */
     @Override
     public Mat getHOGFeatures(final Mat image) {
-        // TODO: 待完善
         return null;
     }
 

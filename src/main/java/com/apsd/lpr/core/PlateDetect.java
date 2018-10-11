@@ -31,11 +31,11 @@ public class PlateDetect {
     public int plateDetect(final Mat src, Vector<Mat> resultVec) {
         Vector<Mat> matVec = plateLocate.plateLocate(src);
 
-        if (0 == matVec.size()) {
+        if (matVec.size()==0) {
             return -1;
         }
 
-        if (0 != plateJudge.plateJudge(matVec, resultVec)) {
+        if (plateJudge.plateJudge(matVec, resultVec)!=0) {
             return -2;
         }
 

@@ -22,6 +22,7 @@ import org.bytedeco.javacpp.opencv_ml.CvANN_MLP;
 import com.apsd.lpr.core.CoreFunc.Direction;
 import com.apsd.lpr.util.Convert;
 import com.apsd.lpr.util.LprUtil;
+import org.springframework.stereotype.Service;
 
 /**
  * ANN训练
@@ -29,6 +30,7 @@ import com.apsd.lpr.util.LprUtil;
  * @author Perye
  *
  */
+@Service
 public class ANNTrain {
 
     private CvANN_MLP ann = new CvANN_MLP();
@@ -116,7 +118,7 @@ public class ANNTrain {
         Mat trainingDataf20 = new Mat();
 
         Vector<Integer> trainingLabels = new Vector<Integer>();
-        String path = "data/train/data/chars_recognise_ann/chars2/chars2";
+        String path = "src/main/resources/static/data/train/data/chars_recognise_ann/chars2";
 
         for (int i = 0; i < numCharacter; i++) {
             System.out.println("Character: " + strCharacters[i]);
@@ -141,7 +143,7 @@ public class ANNTrain {
             }
         }
 
-        path = "data/train/data/chars_recognise_ann/charsChinese/charsChinese";
+        path = "src/main/resources/static/data/train/data/chars_recognise_ann/charsChinese";
 
         for (int i = 0; i < strChinese.length; i++) {
             System.out.println("Character: " + strChinese[i]);
@@ -175,7 +177,7 @@ public class ANNTrain {
             labels[i] = trainingLabels.get(i).intValue();
         new Mat(labels).copyTo(classes);
 
-        FileStorage fs = new FileStorage("data/train/ann_data.xml", FileStorage.WRITE);
+        FileStorage fs = new FileStorage("src/main/resources/static/data/train/ann_data.xml", FileStorage.WRITE);
         fs.writeObj("TrainingDataF5", trainingDataf5.data());
         fs.writeObj("TrainingDataF10", trainingDataf10.data());
         fs.writeObj("TrainingDataF15", trainingDataf15.data());
@@ -188,7 +190,7 @@ public class ANNTrain {
     }
 
     public void saveModel(int _predictsize, int _neurons) {
-        FileStorage fs = new FileStorage("data/train/ann_data.xml", FileStorage.READ);
+        FileStorage fs = new FileStorage("src/main/resources/static/data/train/ann_data.xml", FileStorage.READ);
         String training = "TrainingDataF" + _predictsize;
         Mat TrainingData = new Mat(fs.get(training).readObj());
         Mat Classes = new Mat(fs.get("classes"));
@@ -205,14 +207,8 @@ public class ANNTrain {
 
         System.out.println("End the saveModelChar");
 
-        String model_name = "data/train/ann.xml";
+        String model_name = "src/main/resources/static/data/train/ann.xml";
 
-        // if(1)
-        // {
-        // String str =
-        // String.format("ann_prd:%d\tneu:%d",_predictsize,_neurons);
-        // model_name = str;
-        // }
 
         CvFileStorage fsto = CvFileStorage
                 .open(model_name, CvMemStorage.create(), CV_STORAGE_WRITE);
@@ -224,16 +220,6 @@ public class ANNTrain {
 
         saveTrainData();
 
-        // 可根据需要训练不同的predictSize或者neurons的ANN模型
-        // for (int i = 2; i <= 2; i ++)
-        // {
-        // int size = i * 5;
-        // for (int j = 5; j <= 10; j++)
-        // {
-        // int neurons = j * 10;
-        // saveModel(size, neurons);
-        // }
-        // }
 
         // 这里演示只训练model文件夹下的ann.xml，此模型是一个predictSize=10,neurons=40的ANN模型。
         // 根据机器的不同，训练时间不一样，但一般需要10分钟左右，所以慢慢等一会吧。

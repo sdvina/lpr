@@ -50,4 +50,11 @@ public interface LprService {
      */
     String plateRecognize(String imgPath);
 
+    /**
+     * 预测直方图
+     * @param imgPath
+     * @return
+     */
+    float[] projectedHistogram(String imgPath);
+
 }
