@@ -38,4 +38,12 @@ public class LprServiceImplTest {
         System.out.println(result);
     }
 
+    /**
+     * 颜色检测
+     */
+    @Test
+    public void colorDetect() {
+        String result = lprService.colorDetect("src/main/resources/static/data/image/test_image/core_func_yellow.jpg");
+        System.out.println(result);
+    }
 }

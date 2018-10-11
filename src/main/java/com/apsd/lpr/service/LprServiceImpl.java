@@ -2,9 +2,11 @@ package com.apsd.lpr.service;
 
 import com.apsd.lpr.core.CharsIdentify;
 import com.apsd.lpr.core.CharsRecognize;
+import com.apsd.lpr.core.CoreFunc;
 import org.bytedeco.javacpp.opencv_core.Mat;
 import org.springframework.stereotype.Service;
 
+import static com.apsd.lpr.core.CoreFunc.getPlateType;
 import static org.bytedeco.javacpp.opencv_highgui.imread;
 
 /**
@@ -39,5 +41,17 @@ public class LprServiceImpl implements LprService{
         charsRecognize.setCRDebug(true);
         String result = charsRecognize.charsRecognize(src);
         return result;
+    }
+
+    /**
+     * 颜色检测
+     * @param imgPath
+     * @return
+     */
+    @Override
+    public String colorDetect(String imgPath) {
+        Mat src = imread(imgPath);
+        CoreFunc.Color color = getPlateType(src, true);
+        return color.toString();
     }
 }

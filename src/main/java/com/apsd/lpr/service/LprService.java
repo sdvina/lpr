@@ -1,6 +1,8 @@
 package com.apsd.lpr.service;
 
 
+import com.apsd.lpr.core.CoreFunc;
+
 /**
  * @author Perye
  */
@@ -19,5 +21,13 @@ public interface LprService {
      * @return
      */
     String charsRecognize(String imgPath);
+
+    /**
+     * 颜色检测
+     * @param imgPath
+     * @return
+     */
+    String colorDetect(String imgPath);
+
 
 }
