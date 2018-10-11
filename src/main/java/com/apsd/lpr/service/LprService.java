@@ -1,8 +1,6 @@
 package com.apsd.lpr.service;
 
 
-import com.apsd.lpr.core.CoreFunc;
-
 /**
  * @author Perye
  */
@@ -29,5 +27,11 @@ public interface LprService {
      */
     String colorDetect(String imgPath);
 
+    /**
+     * 车牌检测
+     * @param imgPath
+     * @return
+     */
+    void plateDetect(String imgPath);
 
 }

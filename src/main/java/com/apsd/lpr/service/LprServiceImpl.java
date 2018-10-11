@@ -3,10 +3,14 @@ package com.apsd.lpr.service;
 import com.apsd.lpr.core.CharsIdentify;
 import com.apsd.lpr.core.CharsRecognize;
 import com.apsd.lpr.core.CoreFunc;
+import com.apsd.lpr.core.PlateDetect;
 import org.bytedeco.javacpp.opencv_core.Mat;
 import org.springframework.stereotype.Service;
 
+import java.util.Vector;
+
 import static com.apsd.lpr.core.CoreFunc.getPlateType;
+import static com.apsd.lpr.core.CoreFunc.showImage;
 import static org.bytedeco.javacpp.opencv_highgui.imread;
 
 /**
@@ -53,5 +57,23 @@ public class LprServiceImpl implements LprService{
         Mat src = imread(imgPath);
         CoreFunc.Color color = getPlateType(src, true);
         return color.toString();
+    }
+
+    /**
+     * 车牌检测
+     * @param imgPath
+     * @return
+     */
+    @Override
+    public void plateDetect(String imgPath) {
+        Mat src = imread(imgPath);
+        PlateDetect plateDetect = new PlateDetect();
+        plateDetect.setPDLifemode(true);
+        Vector<Mat> matVector = new Vector<Mat>();
+        if (plateDetect.plateDetect(src, matVector) == 0) {
+            for (int i = 0; i<matVector.size(); ++i) {
+                showImage("Plate Detected", matVector.get(i));
+            }
+        }
     }
 }

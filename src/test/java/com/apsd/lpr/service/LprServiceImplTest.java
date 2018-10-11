@@ -46,4 +46,12 @@ public class LprServiceImplTest {
         String result = lprService.colorDetect("src/main/resources/static/data/image/test_image/core_func_yellow.jpg");
         System.out.println(result);
     }
+
+    /**
+     * 车牌检测
+     */
+    @Test
+    public void plateDetect() {
+        lprService.plateDetect("src/main/resources/static/data/image/baidu_image/test2.jpg");
+    }
 }

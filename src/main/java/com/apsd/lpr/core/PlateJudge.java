@@ -28,7 +28,7 @@ public class PlateJudge {
     /**
      * 模型存储路径
      */
-    private String path = "data/model/svm.xml";
+    private String path = "src/main/resources/static/data/model/svm.xml";
 
     public void setModelPath(String path) {
         this.path = path;
