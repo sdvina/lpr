@@ -113,15 +113,4 @@ public class LprServiceImpl implements LprService{
         return result;
     }
 
-    /**
-     * 预测直方图
-     * @param imgPath
-     * @return
-     */
-    @Override
-    public float[] projectedHistogram(String imgPath) {
-        Mat src = imread(imgPath);
-        float[] hist = CoreFunc.projectedHistogram(src, CoreFunc.Direction.HORIZONTAL);
-        return hist;
-    }
 }

@@ -292,12 +292,12 @@ public class SVMTrain {
 
             System.out.println("Svm generate done!");
 
-            CvFileStorage fsTo = CvFileStorage.open("src/main/resources/static/data/model/svm.xml", CvMemStorage.create(),
+            CvFileStorage fsTo = CvFileStorage.open("src/main/resources/static/data/train/svm.xml", CvMemStorage.create(),
                     CV_STORAGE_WRITE);
             svm.write(fsTo, "svm");
         } else {
             try {
-                String path = "src/main/resources/static/data/model/svm.xml";
+                String path = "src/main/resources/static/data/train/svm.xml";
                 svm.load(path, "svm");
             } catch (Exception err) {
                 System.out.println(err.getMessage());

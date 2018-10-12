@@ -46,10 +46,7 @@ public class LprController {
 //        }
 //    }
 
-    @GetMapping("/ci")
-    public String charsIndetify(){
-        return lprService.charsIndetify("https://i.imgur.com/5PMBuyP.jpg");
-    }
+
 
 
 }

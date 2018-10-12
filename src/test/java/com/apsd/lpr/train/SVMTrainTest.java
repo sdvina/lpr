@@ -21,6 +21,6 @@ public class SVMTrainTest {
 
     @Test
     public void SVMTrain() {
-        svmTrain.learn2HasPlate();
+        svmTrain.svmTrain(true,true);
     }
 }
