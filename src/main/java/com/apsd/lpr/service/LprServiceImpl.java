@@ -4,12 +4,9 @@ import com.apsd.lpr.core.*;
 import org.bytedeco.javacpp.opencv_core.Mat;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Vector;
-
 import static com.apsd.lpr.core.CoreFunc.getPlateType;
 import static com.apsd.lpr.core.CoreFunc.showImage;
-import static org.bytedeco.javacpp.opencv_highgui.cvCaptureFromAVI;
 import static org.bytedeco.javacpp.opencv_highgui.imread;
 
 /**

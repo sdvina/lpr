@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>车牌识别</title>
+    <title>颜色检测</title>
     <link rel="stylesheet" href="./lib/layui/css/layui.css">
     <link rel="stylesheet" href="./css/d.css">
     <script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
@@ -18,7 +18,7 @@
                 &nbsp;
             </div>
             <div class="layui-col-md4">
-                <h1>车牌识别</h1>
+                <h1>颜色检测</h1>
             </div>
             <div class="layui-col-md3">
                 &nbsp;
@@ -61,7 +61,7 @@
                 &nbsp;
             </div>
             <div class="layui-col-md4">
-                <button class="layui-btn" @click="plateRecognize()">车牌识别</button>
+                <button class="layui-btn" @click="colorDetect()">颜色检测</button>
 
             </div>
             <div class="layui-col-md3">
@@ -76,19 +76,19 @@
             &nbsp;
         </div>
         <div class="layui-col-md2">
+            <a href="/plateDetect"><h2>车牌检测</h2></a>
+        </div>
+        <div class="layui-col-md2">
+            <a href="/plateLocate"><h2>车牌定位</h2></a>
+        </div>
+        <div class="layui-col-md2">
+            <a href="/"><h2>车牌识别</h2></a>
+        </div>
+        <div class="layui-col-md2">
             <a href="/charsIndetify"><h2>字符标识</h2></a>
         </div>
         <div class="layui-col-md2">
             <a href="/charsRecognize"><h2>字符识别</h2></a>
-        </div>
-        <div class="layui-col-md2">
-            <a href="/colorDetect"><h2>颜色检测</h2></a>
-        </div>
-        <div class="layui-col-md2">
-            <a href="/plateDetect"><h2>车牌检测</h2></a>
-        </div>
-        <div class="layui-col-md2">
-            <a href="#"><h2>车牌定位</h2></a>
         </div>
     </div>
 </div>

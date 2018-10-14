@@ -207,7 +207,7 @@ public class ANNTrain {
 
         System.out.println("End the saveModelChar");
 
-        String model_name = "src/main/resources/static/data/train/ann.xml";
+        String model_name = "src/main/resources/static/data/train/ann_data.xml";
 
 
         CvFileStorage fsto = CvFileStorage
