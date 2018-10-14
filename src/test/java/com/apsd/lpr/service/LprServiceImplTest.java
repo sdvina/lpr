@@ -30,7 +30,7 @@ public class LprServiceImplTest {
     }
 
     /***
-     * 车牌识别
+     * 字符识别
      */
     @Test
     public void charsRecognize() {
@@ -68,16 +68,16 @@ public class LprServiceImplTest {
      */
     @Test
     public void plateRecognize() {
-        String result = lprService.plateRecognize("src/main/resources/static/data/image/baidu_image/test1.jpg");
+        String result = lprService.plateRecognize("src/main/resources/static/images/file.jpg");
         System.out.println(result);
     }
 
     /**
      * 预测直方图
      */
-    @Test
-    public void projectedHistogram() {
-        float[] result = lprService.projectedHistogram("src/main/resources/static/data/image/baidu_image/test1.jpg");
-        System.out.println(result);
-    }
+//    @Test
+//    public void projectedHistogram() {
+//        float[] result = lprService.projectedHistogram("src/main/resources/static/data/image/baidu_image/test1.jpg");
+//        System.out.println(result);
+//    }
 }
